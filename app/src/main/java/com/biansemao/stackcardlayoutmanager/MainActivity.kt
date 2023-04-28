@@ -7,6 +7,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.LayoutAnimationController
+import android.view.animation.RotateAnimation
 import android.widget.ImageView
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val firstListRv = findViewById<RecyclerView>(R.id.rv_list_first)
+
         val secondListRv = findViewById<RecyclerView>(R.id.rv_list_second)
 
         val tempList = ArrayList<Int>()
@@ -26,30 +30,19 @@ class MainActivity : AppCompatActivity() {
         tempList.add(R.drawable.ic_card_5)
         tempList.add(R.drawable.ic_card_6)
 
-        val horizontalConfig = StackCardLayoutManager.StackConfig()
-        horizontalConfig.stackScale = 0.9f
-        horizontalConfig.stackCount = 3
-        horizontalConfig.stackPosition = 0
-        horizontalConfig.space = dip2px(this, 24f)
-        horizontalConfig.parallex = 1.5f
-        horizontalConfig.isCycle = false
-        horizontalConfig.isAdjustSize = true
-        horizontalConfig.direction = StackCardLayoutManager.StackDirection.BOTTOM
-        firstListRv.layoutManager = StackCardLayoutManager(horizontalConfig)
-        firstListRv.adapter = TestAdapter(this, tempList)
-
         val verticalConfig = StackCardLayoutManager.StackConfig()
         verticalConfig.stackScale = 0.9f
         verticalConfig.stackCount = 3
         verticalConfig.stackPosition = 0
-        verticalConfig.space = dip2px(this, 24f)
+        verticalConfig.space = 0
         verticalConfig.parallex = 1.5f
-        verticalConfig.isCycle = true
-        verticalConfig.isAutoCycle = true
+        verticalConfig.isCycle = false
+        verticalConfig.isAutoCycle = false
         verticalConfig.autoCycleTime = 3500
-        verticalConfig.direction = StackCardLayoutManager.StackDirection.RIGHT
+        verticalConfig.direction = StackCardLayoutManager.StackDirection.LEFT
         secondListRv.layoutManager = StackCardLayoutManager(verticalConfig)
         secondListRv.adapter = TestAdapter(this, tempList)
+
 
     }
 
